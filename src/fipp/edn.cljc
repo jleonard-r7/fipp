@@ -43,7 +43,7 @@
              (pr-str x))])
 
   (visit-symbol [this x]
-    [:text (str x)])
+    [:text (str "(symbol \"" x "\")")])
 
   (visit-keyword [this x]
     [:text (str x)])
@@ -55,7 +55,7 @@
   (visit-seq [this x]
     (if-let [pretty (symbols (first x))]
       (pretty this x)
-      (pretty-coll this "(" x :line ")" visit)))
+      (pretty-coll this "'(" x :line ")" visit)))
 
   (visit-vector [this x]
     (pretty-coll this "[" x :line "]" visit))
